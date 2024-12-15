@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import CalendarGrid from './components/CalendarGrid';
-import EventModal from './components/EventModal';
-import EventListPanel from './components/EventListPanel';
+import { useState } from 'react';
+import CalendarGrid from './Components/CalendarGrid';
+import EventModal from './Components/EventModal';
+import EventListPanel from './Components/EventListPanel';
 import { loadEventsFromStorage, saveEventsToStorage } from './utils/eventUtils';
 import './style.css';
 
