@@ -1,21 +1,22 @@
-import CalendarGrid from './Components/CalendarGrid';
-import EventModal from './Components/EventModal';
-import EventListPanel from './Components/EventListPanel';
+import React, { useState } from 'react';
+import CalendarGrid from './components/CalendarGrid';
+import EventModal from './components/EventModal';
+import EventListPanel from './components/EventListPanel';
 import { loadEventsFromStorage, saveEventsToStorage } from './utils/eventUtils';
-import './style.css'
+import './style.css';
 
-import { useState } from 'react';
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [events, setEvents] = useState(loadEventsFromStorage());
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
 
+  // Handle date click to open modal
   const handleDateClick = (date) => {
     setSelectedDate(date);
     setIsModalOpen(true);
   };
 
+  // Handle event submission
   const handleEventSubmit = (event) => {
     const dateKey = selectedDate.toISOString().split('T')[0];
     const updatedEvents = {
@@ -27,6 +28,7 @@ function App() {
     setIsModalOpen(false);
   };
 
+  // Delete event for a specific date
   const handleEventDelete = (dateKey, eventIndex) => {
     const updatedEvents = { ...events };
     updatedEvents[dateKey].splice(eventIndex, 1);
@@ -35,28 +37,48 @@ function App() {
     saveEventsToStorage(updatedEvents);
   };
 
+  // Navigate months
+  const handleMonthChange = (offset) => {
+    const newDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + offset, 1);
+    setSelectedDate(newDate);
+  };
+
   return (
     <div className="app">
       <h1>Dynamic Event Calendar</h1>
+
+      {/* Month Navigation */}
+      <div className="calendar-controls">
+        <button onClick={() => handleMonthChange(-1)}>Previous</button>
+        <span>
+          {selectedDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
+        </span>
+        <button onClick={() => handleMonthChange(1)}>Next</button>
+      </div>
+
+      {/* Calendar Grid */}
       <CalendarGrid
         selectedDate={selectedDate}
         events={events}
         onDateClick={handleDateClick}
       />
+
+      {/* Event Modal */}
       {isModalOpen && (
         <EventModal
           onClose={() => setIsModalOpen(false)}
           onSubmit={handleEventSubmit}
           selectedDate={selectedDate}
-          event={selectedEvent}
         />
       )}
+
+      {/* Event List Panel */}
       <EventListPanel
         events={events[selectedDate.toISOString().split('T')[0]] || []}
         onDelete={(index) => handleEventDelete(selectedDate.toISOString().split('T')[0], index)}
       />
     </div>
   );
-};
+}
 
-export default App
+export default App;
