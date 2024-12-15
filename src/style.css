@@ -1,160 +1,262 @@
-body {
-  font-family: 'Arial', sans-serif;
+/* General Reset */
+:root
+{
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
+  box-sizing: border-box;
 }
 
-.app {
-  text-align: center;
-  padding: 20px;
-  color: #333;
+:root
+{
+  --bg-color:#f8f9fa;
+  --container-bg-color:#fff;
+  --font-color:white;
+
+  --shadow-color:rgba(0, 0, 0, 0.1);
+  --btn-bg-color:#007bff;
+  --btn-bg-hover-color:#0056b3;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
 }
 
 h1 {
-  margin-bottom: 20px;
-  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2rem;
 }
 
+/* App Container */
+.app {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 1.6rem;
+  background-color: var(--container-bg-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  border-radius: .8rem;
+  -webkit-border-radius: .8rem;
+  -moz-border-radius: .8rem;
+  -ms-border-radius: .8rem;
+  -o-border-radius: .8rem;
+}
+
+/* Calendar Controls */
+.calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: .1.2rem 0;
+}
+
+.calendar-controls button {
+  background-color: var(--btn-bg-color);
+  color: var(--font-color);
+  border: none;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: .3rem;
+  -webkit-border-radius: .3rem;
+  -moz-border-radius: .3rem;
+  -ms-border-radius: .3rem;
+  -o-border-radius: .3rem;
+}
+
+.calendar-controls button:hover {
+  background-color: var(--btn-bg-hover-color);
+}
+
+.calendar-controls span {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Calendar Grid */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  margin: 0 auto;
-  max-width: 800px;
+  gap: .7rem;
+  margin-top: 1.1rem;
 }
 
 .day {
-  padding: 15px;
-  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f3f5;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  text-align: center;
+  height: 3.75rem;
   cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .day:hover {
-  background-color: #fffae6;
+  background-color: #e9ecef;
 }
 
-.current-month {
+.day.current-month {
   color: #333;
 }
 
-.other-month {
+.day.other-month {
   color: #ccc;
 }
 
-.today {
-  background-color: #ffd700;
-  font-weight: bold;
+.day.today {
+  background-color: #ffdd57;
+  color: #333;
 }
 
+/* Event Indicator */
 .event-indicator {
-  color: #ff5733;
+  color: #ff4d4d;
   font-size: 1.2rem;
+  margin-left: 5px;
 }
 
+/* Event Modal */
 .event-modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  text-align: left;
-  min-width: 300px;
+  background: var(--bg-color);
+  padding: 20px;
+  width: 90%;
+  max-width:25rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
 }
 
 .event-modal h2 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
+  margin-bottom: 0.9rem;
+  text-align: center;
 }
 
 .event-modal input,
 .event-modal textarea {
   display: block;
   width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
+  margin-bottom: .8rem;
+  padding: .5rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
   font-size: 1rem;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .event-modal button {
-  margin-right: 10px;
-  padding: 10px 15px;
+  display: inline-block;
+  margin-right: 5px;
+  padding: .5rem 1rem;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
-  color: white;
   cursor: pointer;
+  transition: background-color 0.3s ease;
   font-size: 1rem;
 }
 
-.event-modal button:hover {
-  background-color: #0056b3;
+.event-modal button:first-of-type {
+  background-color: #28a745;
+  color: white;
 }
 
-.event-list-panel {
-  margin-top: 30px;
+.event-modal button:first-of-type:hover {
+  background-color: #218838;
 }
 
-.event-list-panel h2 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-}
-
-.event-list-panel ul {
-  list-style: none;
-  padding: 0;
-}
-
-.event-list-panel li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.event-list-panel button {
-  padding: 5px 10px;
-  border: none;
+.event-modal button:last-of-type {
   background-color: #dc3545;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
+  color: white;
 }
 
-.event-list-panel button:hover {
+.event-modal button:last-of-type:hover {
   background-color: #c82333;
 }
 
-.event-day {
-  background-color: #fffae6;
-  font-weight: bold;
-}
-
-
-.drop-target {
-  background-color: #e6ffe6;
-  border: 2px dashed #4caf50;
-}
-
-.draggable-event {
-  padding: 5px;
+/* Event List Panel */
+.event-list {
+  margin-top: 1.25rem;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  margin-top: 3px;
-  cursor: move;
+  background-color: #f9f9f9;
 }
 
+.event-list h3 {
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+
+.event-list ul
+{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .5rem;
+}
+
+.event-list .list
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  border: 1px solid gray;
+}
+
+.event-list button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.event-list button:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .calendar-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .event-modal {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .day {
+    height: 3.125rem;
+  }
+}
