@@ -76,6 +76,9 @@ Follow these steps to set up and run the project locally:
 ### Add Event Modal
 ![Add Event Modal](./src/assets/eventModal.png)
 
+### Add EventList
+![Add Event Modal](./src/assets/eventList.png)
+
 ## Exporting Events
 - Export all events as JSON or CSV files using the provided buttons.
 
