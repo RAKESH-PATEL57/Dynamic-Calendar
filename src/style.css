@@ -1,68 +1,160 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
+  font-family: 'Arial', sans-serif;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+.app {
+  text-align: center;
+  padding: 20px;
+  color: #333;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.day {
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.day:hover {
+  background-color: #fffae6;
 }
+
+.current-month {
+  color: #333;
+}
+
+.other-month {
+  color: #ccc;
+}
+
+.today {
+  background-color: #ffd700;
+  font-weight: bold;
+}
+
+.event-indicator {
+  color: #ff5733;
+  font-size: 1.2rem;
+}
+
+.event-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  text-align: left;
+  min-width: 300px;
+}
+
+.event-modal h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.event-modal input,
+.event-modal textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.event-modal button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.event-modal button:hover {
+  background-color: #0056b3;
+}
+
+.event-list-panel {
+  margin-top: 30px;
+}
+
+.event-list-panel h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.event-list-panel ul {
+  list-style: none;
+  padding: 0;
+}
+
+.event-list-panel li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.event-list-panel button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #dc3545;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.event-list-panel button:hover {
+  background-color: #c82333;
+}
+
+.event-day {
+  background-color: #fffae6;
+  font-weight: bold;
+}
+
+
+.drop-target {
+  background-color: #e6ffe6;
+  border: 2px dashed #4caf50;
+}
+
+.draggable-event {
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 3px;
+  cursor: move;
+}
+
