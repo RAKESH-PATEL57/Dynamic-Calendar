@@ -2,12 +2,12 @@
 function EventListPanel({ events, onDelete })
 {
     return (
-        <div className="event-list-panel">
-          <h2>Events</h2>
+        <div className="event-list">
+          <h3>Events</h3>
           {events.length > 0 ? (
             <ul>
               {events.map((event, index) => (
-                <li key={index}>
+                <li key={index} className="list">
                   <div>
                     <strong>{event.eventName}</strong>
                     <p>
